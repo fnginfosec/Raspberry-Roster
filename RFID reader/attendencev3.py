@@ -56,7 +56,8 @@ try:
             endtime = datetime.now() + timedelta(seconds=15) #Set timeout in seconds
             while datetime.now() < endtime:
                 scanuser(db)
-            if datetime.now() = endtime:
+                time.sleep(2)
+            if datetime.now() == endtime:
                 break
         except:
             lcd.message("Error\nPanic!")
