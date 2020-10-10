@@ -20,17 +20,17 @@ def getcid(): # grab the class ID from keypad
         host="10.0.0.240",
         user="attendanceadmin",
         passwd="Password01",
-        database={cid}
-        )
-
-        cursor = db.cursor()
-        reader = SimpleMFRC522()
+        database= str(cid)
+        ) 
         return db
 
     else: #No Class ID input
         lcd.message("No input detected")
   
 def scanuser(db): #Tap user RFID card
+    cursor = db.cursor()
+    reader = SimpleMFRC522()
+    
     lcd.clear()
     lcd.message('Place Card to\nrecord attendance')
     id, text = reader.read()
@@ -46,15 +46,15 @@ def scanuser(db): #Tap user RFID card
         db.commit()
     else:
         lcd.message("User does not exist.")
-        time.sleep(2)
 
 
 ##################### Main #####################
 try:
-    db = getcid()
-    for i in range(7200): #Repeat function every half second for approx 1 hour
-        scanuser(db)
-        time.sleep(0.5)
+    while True:
+        db = getcid()
+        for i in range(7200): #Repeat function every half second for approx 1 hour
+            scanuser(db)
+            time.sleep(0.5)
 except:
     lcd.message("Error Occurred.")
                 
