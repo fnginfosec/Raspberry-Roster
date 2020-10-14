@@ -42,7 +42,7 @@ def scanuser(db): #Tap user RFID card
 
     if cursor.rowcount >= 1:
         lcd.message("Welcome " + result[1])
-        cursor.execute("INSERT INTO attendance (user_id) VALUES (%s)", (result[0],) )
+        cursor.execute("INSERT INTO attendance (user_id) VALUES (%s)", (result[0],) ) #need to change attendance to cid
         db.commit()
     else:
         lcd.message("User does not exist.")
