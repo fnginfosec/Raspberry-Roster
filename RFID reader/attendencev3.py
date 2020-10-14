@@ -20,7 +20,7 @@ def getcid(): # grab the class ID from keypad
         host="10.0.0.240",
         user="attendanceadmin",
         passwd="Password01",
-        database= str(cid)
+        database="attendancesystem", #str(cid)
         ) 
         return db
 
